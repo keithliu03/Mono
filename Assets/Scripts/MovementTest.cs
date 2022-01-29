@@ -4,25 +4,21 @@ using UnityEngine;
 
 public class MovementTest : MonoBehaviour
 {
-    public GameObject player;
+    public float speed = 10;
+    public float jumpForce = 10;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Rigidbody2D rb;
+
+    private bool isGrounded = false;
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.A))
-        {
-            player.transform.position = transform.position + new Vector3(-10 * Time.deltaTime, 0, 0); ;
-        }
+        rb.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, rb.velocity.y);
 
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded == true)
         {
-            player.transform.position = transform.position + new Vector3(10 * Time.deltaTime, 0, 0); ;
+            rb.AddForce(new Vector2(0, 10), ForceMode2D.Impulse);
         }
     }
 }
