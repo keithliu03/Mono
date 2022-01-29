@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class ModeSwap : MonoBehaviour
 {
-
-    public GameObject[] lightMode;
-    public GameObject[] darkMode;
-
     public Renderer rend;
+    public Collider2D colli;
 
-    private bool lightModeOn = true;
+    private GameObject[] lightMode;
+    private GameObject[] darkMode;
     private bool darkModeOn = false;
 
     // Start is called before the first frame update
@@ -25,19 +23,56 @@ public class ModeSwap : MonoBehaviour
     {
         if (Input.GetKeyDown("q"))
         {
-            print("space key was pressed");
+            toggleModes();
         }
     }
 
     public void toggleModes()
     {
-        if (lightModeOn == true && darkModeOn == false)
+        Debug.Log(darkModeOn);
+        if (darkModeOn == false)
         {
-            foreach (var item in lightMode)
+            foreach (var tile in darkMode)
             {
-                //item.GetComponent<Renderer>().disabled;
+                rend = tile.GetComponent<Renderer>();
+                rend.enabled = true;
+
+                colli = tile.GetComponent<Collider2D>();
+                colli.enabled = true;
             }
-            
+
+            foreach (var tile in lightMode)
+            {
+                rend = tile.GetComponent<Renderer>();
+                rend.enabled = false;
+
+                colli = tile.GetComponent<Collider2D>();
+                colli.enabled = false;
+            }
+
+            darkModeOn = true;
+        }
+        else
+        {
+            foreach (var tile in darkMode)
+            {
+                rend = tile.GetComponent<Renderer>();
+                rend.enabled = false;
+
+                colli = tile.GetComponent<Collider2D>();
+                colli.enabled = false;
+            }
+
+            foreach (var tile in lightMode)
+            {
+                rend = tile.GetComponent<Renderer>();
+                rend.enabled = true;
+
+                colli = tile.GetComponent<Collider2D>();
+                colli.enabled = true;
+            }
+
+            darkModeOn = false;
         }
     }
 }
