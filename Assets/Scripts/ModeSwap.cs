@@ -9,12 +9,23 @@ public class ModeSwap : MonoBehaviour
 
     private GameObject[] lightMode;
     private GameObject[] darkMode;
-    private bool darkModeOn = false;
+    private bool darkModeOn;
 
     void Start()
     {
         lightMode = GameObject.FindGameObjectsWithTag("LightTiles");
         darkMode = GameObject.FindGameObjectsWithTag("DarkTiles");
+
+        foreach (var tile in darkMode)
+        {
+            rend = tile.GetComponent<Renderer>();
+            rend.enabled = false;
+
+            colli = tile.GetComponent<Collider2D>();
+            colli.enabled = false;
+        }
+
+        darkModeOn = false;
     }
 
     public void toggleModes()
