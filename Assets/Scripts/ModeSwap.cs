@@ -11,25 +11,14 @@ public class ModeSwap : MonoBehaviour
     private GameObject[] darkMode;
     private bool darkModeOn = false;
 
-    // Start is called before the first frame update
     void Start()
     {
         lightMode = GameObject.FindGameObjectsWithTag("LightTiles");
         darkMode = GameObject.FindGameObjectsWithTag("DarkTiles");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown("q"))
-        {
-            toggleModes();
-        }
-    }
-
     public void toggleModes()
     {
-        Debug.Log(darkModeOn);
         if (darkModeOn == false)
         {
             foreach (var tile in darkMode)
@@ -51,6 +40,7 @@ public class ModeSwap : MonoBehaviour
             }
 
             darkModeOn = true;
+            Camera.main.backgroundColor = Color.white;
         }
         else
         {
@@ -73,6 +63,7 @@ public class ModeSwap : MonoBehaviour
             }
 
             darkModeOn = false;
+            Camera.main.backgroundColor = Color.black;
         }
     }
 }
