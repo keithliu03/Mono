@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ModeSwap : MonoBehaviour
 {
-    public Renderer rend;
-    public Collider2D colli;
+    private Renderer rend;
+    private Collider2D colli;
 
     private GameObject[] lightMode;
     private GameObject[] darkMode;
