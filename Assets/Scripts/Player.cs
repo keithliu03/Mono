@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
 
         if (gameObject.transform.position.y < -50)
         {
-            gameObject.transform.position = new Vector2(respawnPoint.x, respawnPoint.y);
+            Die();
         }
     }
 
@@ -43,6 +43,11 @@ public class Player : MonoBehaviour
         animator.SetTrigger("Jump");
 
         gameObject.GetComponent<ModeSwap>().toggleModes();
+    }
+
+    public void Die()
+    {
+        gameObject.transform.position = new Vector2(respawnPoint.x, respawnPoint.y);
     }
 
     void FlipInDirection(Vector2 direction)
