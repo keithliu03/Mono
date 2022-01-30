@@ -1,10 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PhysicObjects : MonoBehaviour
 {
     public GameObject player;
+    private RigidbodyConstraints2D originalConstraints;
+
+    void Start()
+    {
+        originalConstraints = gameObject.GetComponent<Rigidbody2D>().constraints;
+    }
 
     void Update()
     {
@@ -12,11 +16,12 @@ public class PhysicObjects : MonoBehaviour
         {
             if (gameObject.tag == "DarkTiles")
             {
-                gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
+                gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
             }
+
             if (gameObject.tag == "LightTiles")
             {
-                gameObject.GetComponent<Rigidbody2D>().gravityScale = 1;
+                gameObject.GetComponent<Rigidbody2D>().constraints = originalConstraints;
             }
         }
 
@@ -24,11 +29,12 @@ public class PhysicObjects : MonoBehaviour
         {
             if (gameObject.tag == "DarkTiles")
             {
-                gameObject.GetComponent<Rigidbody2D>().gravityScale = 1;
+                gameObject.GetComponent<Rigidbody2D>().constraints = originalConstraints;
             }
+
             if (gameObject.tag == "LightTiles")
             {
-                gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
+                gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
             }
         }
     }
