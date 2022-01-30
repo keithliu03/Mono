@@ -97,4 +97,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1147738600798549227, guid: 39a9b7906bdfb924d8980b61a22d18e8, type: 3}
-  cameraHeight: 3
+  cameraHeight: 2
