@@ -3,15 +3,23 @@ using UnityEngine;
 public class PhysicObjects : MonoBehaviour
 {
     public GameObject player;
+    public Vector2 origPos;
+
     private RigidbodyConstraints2D originalConstraints;
 
     void Start()
     {
+        origPos = transform.position;
         originalConstraints = gameObject.GetComponent<Rigidbody2D>().constraints;
     }
 
     void Update()
     {
+        if ((Vector2)player.transform.position == player.GetComponent<Player>().getRespawnPoint())
+        {
+            ResetPhysicsObj();
+        }
+
         if (player.GetComponent<ModeSwap>().getDarkModeOn() == false)
         {
             if (gameObject.tag == "DarkTiles")
@@ -37,5 +45,10 @@ public class PhysicObjects : MonoBehaviour
                 gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
             }
         }
+    }
+
+    public void ResetPhysicsObj()
+    {
+        transform.position = origPos;
     }
 }
