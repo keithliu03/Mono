@@ -77,4 +77,9 @@ public class ModeSwap : MonoBehaviour
             Camera.main.backgroundColor = Color.black;
         }
     }
+
+    public bool getDarkModeOn()
+    {
+        return darkModeOn;
+    }
 }
