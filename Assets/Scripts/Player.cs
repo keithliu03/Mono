@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public Rigidbody2D rb;
+    public Animator animator;
 
     public float speed;
     public float jumpForce;
@@ -21,8 +22,11 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        Jump();
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded == true) {
+            Jump();
+        }
         rb.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, rb.velocity.y);
+        animator.SetBool("Walk", (rb.velocity.x != 0));
 
         FlipInDirection(rb.velocity);
 
@@ -34,11 +38,11 @@ public class Player : MonoBehaviour
 
     public void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded == true)
-        {
-            rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
-            gameObject.GetComponent<ModeSwap>().toggleModes();
-        }
+        rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+
+        animator.SetTrigger("Jump");
+
+        gameObject.GetComponent<ModeSwap>().toggleModes();
     }
 
     void FlipInDirection(Vector2 direction)
