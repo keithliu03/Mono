@@ -24,6 +24,8 @@ public class Player : MonoBehaviour
         Jump();
         rb.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, rb.velocity.y);
 
+        FlipInDirection(rb.velocity);
+
         if (gameObject.transform.position.y < -50)
         {
             gameObject.transform.position = new Vector2(respawnPoint.x, respawnPoint.y);
@@ -37,5 +39,18 @@ public class Player : MonoBehaviour
             rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             gameObject.GetComponent<ModeSwap>().toggleModes();
         }
+    }
+
+    void FlipInDirection(Vector2 direction)
+    {
+        if (direction.x < 0)
+        {
+            transform.localScale = new Vector2(-0.7f, 0.7f);
+        }
+        else if (direction.x > 0)
+        {
+            transform.localScale = new Vector2(0.7f, 0.7f);
+        }
+        
     }
 }
