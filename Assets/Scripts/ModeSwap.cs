@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ModeSwap : MonoBehaviour
 {
+    public GameObject player;
+
     private Renderer rend;
     private Collider2D colli;
 
@@ -52,8 +54,7 @@ public class ModeSwap : MonoBehaviour
 
             darkModeOn = true;
             Camera.main.backgroundColor = Color.white;
-            rend.material.SetFloat("_Threshold", 1.0f);
-            Debug.Log(rend.material.GetFloat("_Threshold"));
+            player.GetComponent<Renderer>().material.SetFloat("_Threshold", 0);
         }
         else
         {
@@ -77,8 +78,7 @@ public class ModeSwap : MonoBehaviour
 
             darkModeOn = false;
             Camera.main.backgroundColor = Color.black;
-            rend.material.SetFloat("_Threshold", 0.0f);
-            Debug.Log(rend.material.GetFloat("_Threshold"));
+            player.GetComponent<Renderer>().material.SetFloat("_Threshold", 1);
         }
     }
 
