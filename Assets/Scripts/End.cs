@@ -6,12 +6,23 @@ public class End : MonoBehaviour
 {
     public TextMeshProUGUI text;
     public string nextLevel;
+    public GameObject player;
 
     private bool byExit = false;
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E) && byExit == true) 
+        if (player.GetComponent<ModeSwap>().getDarkModeOn() == true)
+        {
+            text.color = Color.black;
+        }
+
+        if (player.GetComponent<ModeSwap>().getDarkModeOn() == false)
+        {
+            text.color = Color.white;
+        }
+
+        if (Input.GetKeyDown(KeyCode.E) && byExit == true) 
         {
             loadNextLevel(nextLevel);
         }
