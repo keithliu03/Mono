@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     public Rigidbody2D rb;
     public Animator animator;
+    public AudioSource jumpSFX;
 
     public float speed;
     public float jumpForce;
@@ -40,9 +41,8 @@ public class Player : MonoBehaviour
     public void Jump()
     {
         rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
-
         animator.SetTrigger("Jump");
-
+        jumpSFX.Play();
         gameObject.GetComponent<ModeSwap>().toggleModes();
     }
 
