@@ -52,6 +52,8 @@ public class ModeSwap : MonoBehaviour
 
             darkModeOn = true;
             Camera.main.backgroundColor = Color.white;
+            rend.material.SetFloat("_Threshold", 1.0f);
+            Debug.Log(rend.material.GetFloat("_Threshold"));
         }
         else
         {
@@ -75,6 +77,8 @@ public class ModeSwap : MonoBehaviour
 
             darkModeOn = false;
             Camera.main.backgroundColor = Color.black;
+            rend.material.SetFloat("_Threshold", 0.0f);
+            Debug.Log(rend.material.GetFloat("_Threshold"));
         }
     }
 
