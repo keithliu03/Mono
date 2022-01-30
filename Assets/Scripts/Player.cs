@@ -8,11 +8,13 @@ public class Player : MonoBehaviour
 
     public float speed;
     public float jumpForce;
-
     public bool isGrounded = false;
+
+    private Vector2 respawnPoint;
 
     void Start()
     {
+        respawnPoint = GameObject.Find("RespawnPoint").transform.position;
         speed = 5;
         jumpForce = 7;
     }
@@ -21,6 +23,11 @@ public class Player : MonoBehaviour
     {
         Jump();
         rb.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, rb.velocity.y);
+
+        if (gameObject.transform.position.y < -50)
+        {
+            gameObject.transform.position = new Vector2(respawnPoint.x, respawnPoint.y);
+        }
     }
 
     public void Jump()
