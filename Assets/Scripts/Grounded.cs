@@ -7,21 +7,15 @@ public class Grounded : MonoBehaviour
     public GameObject player;
     public Animator animator;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collision.collider.tag == "LightTiles" || collision.collider.tag == "DarkTiles")
-        {
-            player.GetComponent<Player>().isGrounded = true;
-            animator.SetBool("Grounded", true);
-        }
+        player.GetComponent<Player>().isGrounded = true;
+        animator.SetBool("Grounded", true);
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collider)
     {
-        if (collision.collider.tag == "LightTiles" || collision.collider.tag == "DarkTiles")
-        {
-            player.GetComponent<Player>().isGrounded = false;
-            animator.SetBool("Grounded", false);
-        }
+        player.GetComponent<Player>().isGrounded = false;
+        animator.SetBool("Grounded", false);
     }
 }
