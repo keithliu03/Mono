@@ -63,4 +63,9 @@ public class Player : MonoBehaviour
         }
         
     }
+
+    public Vector2 getRespawnPoint()
+    {
+        return respawnPoint;
+    }
 }
