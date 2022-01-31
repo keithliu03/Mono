@@ -20,6 +20,8 @@ public class KillPlayer : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        player.Die();
+        if (collision.gameObject.name.Equals("player")) {
+            player.Die();
+        }
     }
 }
