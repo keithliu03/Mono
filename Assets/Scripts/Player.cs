@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
     public Rigidbody2D rb;
     public Animator animator;
     public AudioSource jumpSFX;
+    public string levelName;
 
     public float speed;
     public float jumpForce;
@@ -23,6 +25,11 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(levelName);
+        }
+
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded == true) 
         {
             Jump();
