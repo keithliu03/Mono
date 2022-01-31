@@ -185,6 +185,10 @@ PrefabInstance:
       value: Level2
       objectReference: {fileID: 0}
     - target: {fileID: 2645050414927122053, guid: f4c0302f013875b4ebdf583e65eea92d, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 264049017}
+    - target: {fileID: 2645050414927122053, guid: f4c0302f013875b4ebdf583e65eea92d, type: 3}
       propertyPath: nextLevel
       value: Level2
       objectReference: {fileID: 0}
